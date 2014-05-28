@@ -1,0 +1,66 @@
+%ul.list-unstyled
+  %li.nav-header
+    %a{"data-target" => "#locations", "data-toggle" => "collapse", :href => "#list-unstyled"}
+      %h5
+        Locations
+        %i.glyphicon.glyphicon-chevron-down
+    %ul#locations.list-unstyled.collapse
+      %li.active
+        %i.glyphicon.glyphicon-home
+        =link_to "Locations", locations_path
+      -if current_user && current_user.admin?
+        %li.active
+          %i.glyphicon.glyphicon-plus
+          =link_to "Add Location", new_location_path 
+%ul.list-unstyled
+  %li.nav-header
+    %a{"data-target" => "#courses", "data-toggle" => "collapse", :href => "#list-unstyled"}
+      %h5
+        Courses
+        %i.glyphicon.glyphicon-chevron-down
+    %ul#courses.list-unstyled.collapse
+      %li
+        %i.glyphicon.glyphicon-folder-open
+        =link_to "Courses", courses_path
+      -if current_user && current_user.admin?
+        %li
+          %i.glyphicon.glyphicon-plus
+          =link_to "Add Course", new_course_path 
+%ul.list-unstyled
+  %li.nav-header
+    %a{"data-target" => "#homework", "data-toggle" => "collapse", :href => "#list-unstyled"}
+      %h5
+        Assignments
+        %i.glyphicon.glyphicon-chevron-down
+    %ul#homework.list-unstyled.collapse
+      %li
+        %i.glyphicon.glyphicon-list-alt
+        =link_to "Homework", homeworks_path
+      -if current_user && current_user.admin?
+        %li
+          %i.glyphicon.glyphicon-plus
+          = link_to "Add Homework", new_homework_path 
+      %li
+        %i.glyphicon.glyphicon-list-alt
+        = link_to "View Submissions", submissions_path
+      %li
+        %i.glyphicon.glyphicon-plus
+        = link_to "Submit Homework", new_submission_path
+/ %ul.list-unstyled
+/   %li.nav-header
+/     %a{"data-target" => "#student", "data-toggle" => "collapse", :href => "#list-unstyled"}
+/       %h5
+/         Students
+/         %i.glyphicon.glyphicon-chevron-down
+/     %ul#student.list-unstyled.collapse
+/       %li
+/         %i.glyphicon.glyphicon-user
+/         Student List
+/       -if current_user && current_user.admin?
+/         %li
+/           %i.glyphicon.glyphicon-plus
+/           Add Student to Course
+/       -if current_user && current_user.admin?
+/         %li
+/           %i.glyphicon.glyphicon-minus
+/           Remove Student from Course

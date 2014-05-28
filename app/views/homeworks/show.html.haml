@@ -1,0 +1,17 @@
+= @homework.name
+= link_to "Edit", edit_homework_path
+|
+= link_to "Delete", homework_path, method: :delete
+|
+=link_to "Submit", new_submission_path 
+%hr
+%ul.submissions
+  - @submissions.each do |submission|
+    =render 'submissions/submission', submission: submission
+%hr
+%ul.comment 
+  = render 'submissions/comment'
+%h5 Add Comment
+= form_tag add_comment_homework_path, method: :post, remote: true
+= text_area_tag "comment[comment]", ""
+=submit_tag "Post Comment"

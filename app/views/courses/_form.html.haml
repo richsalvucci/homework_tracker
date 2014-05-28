@@ -1,0 +1,11 @@
+= form_for @course do |f|
+  =f.label :name
+  =f.text_field :name, placeholder: "Course" 
+  %br
+  =f.label :location_id
+  =f.select :location_id, options_for_select(@locations.map{|loc| [loc.name, loc.id]}), include_blank:'--- Select ---' 
+  %br
+  =f.submit "Submit" 
+  %br
+  %hr
+  = link_to "Home", root_path

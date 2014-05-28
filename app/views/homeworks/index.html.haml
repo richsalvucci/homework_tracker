@@ -1,0 +1,12 @@
+%h4 Assignments
+
+- @homeworks.each do |homework|
+  = link_to homework.name, homework_path(homework)
+  -if current_user.admin?
+    = link_to "Edit", edit_homework_path(homework)
+    |
+    = link_to "Delete", homework_path(homework), method: :delete
+  |
+  =link_to "Submit", new_submission_path
+  %hr
+  

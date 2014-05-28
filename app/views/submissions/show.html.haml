@@ -1,0 +1,13 @@
+%h4 Submisson
+= @submission.description
+= link_to "Edit", edit_submission_path
+|
+= link_to "Delete", submission_path, method: :delete
+%hr
+%ul.comment 
+  = render 'comment'
+
+%h5 Add Comment
+= form_tag add_comment_submission_path, method: :post, remote: true
+= text_area_tag "comment[comment]", ""
+= submit_tag "Post Comment"

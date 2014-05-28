@@ -1,0 +1,4 @@
+%h4 Submissions
+%ul.submissions
+  - @submissions.each do |submission|
+    =render 'submission', submission: submission

@@ -1,0 +1,14 @@
+= form_for @homework do |f|
+  =f.label :name
+  =f.text_field :name, placeholder: "Title"
+  %br
+  =f.label :description
+  =f.text_area :description, placeholder: "What is this assignment?" 
+  %br
+  =f.label :course_id
+  =f.select :course_id, options_for_select(@courses.map{|cour| [cour.name, cour.location, cour.id]}), include_blank:'--- Select ---' 
+  %br
+  =f.submit "Submit" 
+  %br
+  %hr
+  = link_to "Home", root_path

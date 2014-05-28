@@ -1,0 +1,4 @@
+console.log("incomplete")
+$("li.submission_" + "<%= @submission.id %>").replaceWith(
+  "<%= escape_javascript(render(partial: 'submission', locals:{ submission: @submission})) %>"
+  )

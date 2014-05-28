@@ -1,0 +1,13 @@
+= nested_form_for @submission do |f|
+  =f.label :description
+  =f.text_area :description
+  %br
+  =f.label :homework_id
+  =f.select :homework_id, options_for_select(@homeworks.map{|hom| [hom.name, hom.id]}), include_blank:'--- Select ---'
+  %br
+  = f.fields_for :links do |link_form|
+    = link_form.text_field :link
+    = link_form.link_to_remove "Remove this link"
+  = f.link_to_add "Add a link", :links
+  %br
+  = f.submit 'Save'

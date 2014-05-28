@@ -1,0 +1,6 @@
+console.log("reviewing")
+console.log($("li.submission_" + "<%= @submission.id %>"))
+$("li.submission_" + "<%= @submission.id %>").replaceWith(
+  "<%= escape_javascript(render(partial: 'submission', locals:{ submission: @submission})) %>"
+  )
+console.log("reviewed")

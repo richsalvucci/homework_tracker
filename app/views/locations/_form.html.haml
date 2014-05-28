@@ -1,0 +1,8 @@
+= form_for @location do |f|
+  =f.label :name
+  =f.text_field :name, placeholder: "Location" 
+  %br
+  =f.submit "Submit" 
+  %br
+  %hr
+  = link_to "Home", root_path

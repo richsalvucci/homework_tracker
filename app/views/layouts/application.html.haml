@@ -1,0 +1,141 @@
+!!!
+%html
+  %head
+    %title HomeworkTracker
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+    / %link{:href => "//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", :rel => "stylesheet"}
+    %body
+      / Header
+      #top-nav.navbar.navbar-inverse.navbar-static-top
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.icon-toggle
+            %a.navbar-brand{:href => "#"} Ironyard Homework Tracker
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  %i.glyphicon.glyphicon-user
+                  User
+                  %span.caret
+                %ul#g-account-menu.dropdown-menu{:role => "menu"}
+                  %li
+                    %a{:href => "#"} My Profile
+              %li
+                - if user_signed_in? 
+                  = link_to('Logout', destroy_user_session_path, :method => :delete)
+                - else
+                  = link_to('Login', new_user_session_path)
+        / /container
+      / /Header
+      / Main
+      .container
+        .row
+          .col-md-3
+            / Left column
+            %p
+              %strong
+                Tools
+            %hr
+              = render 'layouts/navbar'
+              / %ul.list-unstyled
+              /   %li.nav-header
+              /     %a{"data-target" => "#locations", "data-toggle" => "collapse", :href => "#list-unstyled"}
+              /       %h5
+              /         Locations
+              /         %i.glyphicon.glyphicon-chevron-down
+              /     %ul#locations.list-unstyled.collapse
+              /       %li.active
+              /         %i.glyphicon.glyphicon-home
+              /         =link_to "Locations", locations_path
+              /       %li.active
+              /         %i.glyphicon.glyphicon-plus
+              /         =link_to "Add Location", new_location_path
+              / %ul.list-unstyled
+              /   %li.nav-header
+              /     %a{"data-target" => "#courses", "data-toggle" => "collapse", :href => "#list-unstyled"}
+              /       %h5
+              /         Courses
+              /         %i.glyphicon.glyphicon-chevron-down
+              /     %ul#courses.list-unstyled.collapse
+              /       %li
+              /         %i.glyphicon.glyphicon-folder-open
+              /         =link_to "Courses", courses_path
+              /       %li
+              /         %i.glyphicon.glyphicon-plus
+              /         =link_to "Add Course", new_course_path
+              / %ul.list-unstyled
+              /   %li.nav-header
+              /     %a{"data-target" => "#homework", "data-toggle" => "collapse", :href => "#list-unstyled"}
+              /       %h5
+              /         Assignments
+              /         %i.glyphicon.glyphicon-chevron-down
+              /     %ul#homework.list-unstyled.collapse
+              /       %li
+              /         %i.glyphicon.glyphicon-list-alt
+              /         =link_to "Homework", homeworks_path
+              /       %li
+              /         %i.glyphicon.glyphicon-plus
+              /         = link_to "Add Homework", new_homework_path
+              /       %li
+              /         %a{:href => "#"}
+              /           %i.glyphicon.glyphicon-comment
+              /           Comments
+              / %ul.list-unstyled
+              /   %li.nav-header
+              /     %a{"data-target" => "#student", "data-toggle" => "collapse", :href => "#list-unstyled"}
+              /       %h5
+              /         Students
+              /         %i.glyphicon.glyphicon-chevron-down
+              /     %ul#student.list-unstyled.collapse
+              /       %li
+              /         %a{:href => "#"}
+              /           %i.glyphicon.glyphicon-user
+              /           Student List
+              /       %li
+              /         %a{:href => "#"}
+              /           %i.glyphicon.glyphicon-plus
+              /           Add Student to Course
+              /       %li
+              /         %a{:href => "#"}
+              /           %i.glyphicon.glyphicon-minus
+              /           Remove Student from Course
+              / /col-3
+          .col-md-9
+            / column 2
+            
+            %a{:href => "#"}
+              %strong
+                %i.glyphicon.glyphicon-dashboard
+                My Dashboard
+            %hr
+              .row
+                -if notice || alert
+                  %p.notice= notice
+                  %p.alert= alert
+                = yield
+                / /panel
+                / /col-span-6
+              / /row
+              
+      %footer.text-center
+       
+      #addWidgetModal.modal
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+              %h4.modal-title Add Widget
+            .modal-body
+              %p Add a widget stuff here..
+            .modal-footer
+              %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+              %a.btn.btn-primary{:href => "#"} Save changes
+          / /.modal-content
+        / /.modal-dalog
+      / /.modal
+      %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js", :type => "text/javascript"}
