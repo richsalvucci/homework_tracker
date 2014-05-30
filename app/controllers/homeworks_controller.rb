@@ -56,7 +56,7 @@ class HomeworksController < ApplicationController
 
   def add_comment
     # authorize! :create, Comment 
-    @comment = @homework.comments.create comment_params
+    @comment = @homework.comments.create comment_params.merge(user_id: current_user.id, user_name: current_user.name)
     @comment = @homework.comments.all
     respond_to do |format|
       format.js
@@ -72,6 +72,6 @@ private
   end
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment, :user_id, :user_name)
   end
 end

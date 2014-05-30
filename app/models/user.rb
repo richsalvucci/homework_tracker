@@ -15,4 +15,5 @@ class User < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :join_tables
   has_many :courses, through: :join_tables
+  has_many :comments
 end

@@ -5,11 +5,11 @@ class Submission < ActiveRecord::Base
   accepts_nested_attributes_for :links, allow_destroy: true
   has_many :comments, as: :commentable
 
-  # validate :submit_once
+  validate :submit_once
 
   def submit_once
-    if Submission.where(user_id:self.user_id, homework_id: self.homework_id) .length >= 1
-      errors.add("You can only submit once")
+    if Submission.where(user_id:self.user_id, homework_id: self.homework_id).length >= 1
+      errors.add(:msg, "You can only submit once")
     end
   end
 

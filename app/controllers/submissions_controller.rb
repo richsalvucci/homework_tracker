@@ -17,7 +17,8 @@ class SubmissionsController < ApplicationController
 
   def create
     # authorize! :create, Submission
-    @submission = Submission.create submission_params.merge(user_id: current_user.id)
+    @homeworks = Homework.all
+    @submission = Submission.create submission_params.merge(user_id: current_user.id, user_name:current_user.name)
     if @submission.save
       flash[:notice] = "Thank You"
      redirect_to root_path
@@ -83,7 +84,7 @@ class SubmissionsController < ApplicationController
 
   def add_comment
     # authorize! :create, Comment 
-    @comment = @submission.comments.create comment_params
+    @comment = @submission.comments.create comment_params.merge(user_id: current_user.id)
     @comment = @submission.comments.all
     respond_to do |format|
       format.js
@@ -99,6 +100,6 @@ private
   end
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment, :user_id, :user_name)
   end
 end
