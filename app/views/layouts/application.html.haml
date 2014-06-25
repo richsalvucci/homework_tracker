@@ -17,14 +17,14 @@
             %a.navbar-brand{:href => "#"} Ironyard Homework Tracker
           .navbar-collapse.collapse
             %ul.nav.navbar-nav.navbar-right
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  %i.glyphicon.glyphicon-user
-                  User
-                  %span.caret
-                %ul#g-account-menu.dropdown-menu{:role => "menu"}
-                  %li
-                    %a{:href => "#"} My Profile
+              / %li.dropdown
+              /   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
+              /     %i.glyphicon.glyphicon-user
+              /     User
+              /     %span.caret
+              /   %ul#g-account-menu.dropdown-menu{:role => "menu"}
+              /     %li
+              /       %a{:href => "#"} My Profile
               %li
                 - if user_signed_in? 
                   = link_to('Logout', destroy_user_session_path, :method => :delete)
